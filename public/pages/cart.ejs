@@ -1,0 +1,80 @@
+<div class="jumbotron text-center">
+    <h1>{{message}}</h1>
+
+
+    <div ng-controller="cartController">
+        <div class="row">
+
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+
+                    <table class="table table-bordered">
+
+                        <!-- header -->
+                        <tr class="style">
+                            <td><b>Name</b></td>
+                            <td class="tdCenter"><b>Quantity</b></td>
+                            <td class="tdRight"><b>Price</b></td>
+                            <td />
+                        </tr>
+
+                        <!-- empty cart message -->
+                        <tr ng-hide="cat.GetTotalMenuCount() > 0" >
+                            <td class="tdCenter" colspan="4">
+                                Your cart is empty.
+                            </td>
+                        </tr>
+
+                        <tr class="style" ng-repeat='items in cat.getCartMenu'>
+                            <td><a ui-sref='menu({category:menu.category})'>{{menu.category}}</a></td>
+                            <td class="tdCenter">
+                                <div class="input-append">
+                                    <span style="width:100px" class="btn btn-success">{{cat.GetQuantityByName(menu.category)}}</span>
+
+                                    <button class="btn btn-primary" ng-click='cat.AddToCart(menu.category,+1)'>+</button>
+                                    <button class="btn btn-danger" ng-click='cat.AddToCart(menu.category,-1)'>-</button>
+
+                                </div>
+                            </td>
+                            <td class="tdRight">{{cat.GetQuantityByName(menu.category) * menu.price | currency }}</td>
+                            <td class="tdRight">
+                                <button class="btn btn-danger" ng-click='cat.RemoveCartMenu(menu.category)'>remove </button>
+                            </td>
+                        </tr>
+
+                        <!-- footer -->
+                        <tr class="style">
+                            <td><b>Total</b></td>
+                            <td class="tdCenter"><b>{{cat.cat.GetTotalMenuCount()}}</b></td>
+                            <td class="tdRight"><b>{{cat.GetTotalMenuPrice() | currency}}</b></td>
+                            <td />
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- buttons -->
+                <div class="col-sm-12">
+                    <p class="text-info">
+                        <a href="#/" class="btn btn-block" style="text-decoration:none;background:grey;color:white">
+                            <i class="icon-chevron-left" /> back to store
+                        </a>
+                        <button
+                                class="btn btn-block btn-danger"
+                                ng-click=" "
+                                ng-disabled="cr.GetTotalMenuCount() < 100" >
+                            <i class="icon-trash icon-white" /> Payment
+                        </button>
+                    </p>
+
+                    <br /><br />
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="jumbotron text-center">
+    <h1> MENU </h1>
+    <h3>{{message}}</h3>
+
+    <div ng-controller="specialController as list">
+        <div class="row">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3 col-lg-2">
+                        <nav class="navbar navbar-default navbar-fixed-side">
+                            <p><a href="#special"> Specials </a></p>
+                            <p><a href="#menu"> Menu </a></p>
+
+
+                        </nav>
+                    </div>
+
+
+                    <table align="center" class="col-sm-9 col-lg-10" valign="middle">
+                        <th> Day </th>
+                        <th> Items </th>
+                        <th> Price </th>
+                        <th> Savings </th>
+
+                        <tbody ng-repeat="special in special">
+
+                        <tr>
+                            <td>
+
+                        <tr style="height:55px; font-size:20px; margin-left:20px;" valign="middle"; >
+                        <td>
+                            <span style="height:55px; font-size:20px; margin-left:20px;"  valign="middle";>{{special.name}}</span>
+
+                        <td>
+                            <span style="height:55px; font-size:20px; margin-left:20px;" valign="middle";>{{special.items}}</span>
+                        </td>
+
+                        <td>
+                            <span class="glyphicon glyphicon-euro" ></span>
+                            {{special.price}}
+                        </td>
+
+                        <td>
+                            <span class="glyphicon glyphicon-euro" ></span>{{special.saving}}
+                        </td>
+
+
+
+                        <td>
+
+
+
+
+                            <span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px;" valign="middle";>
+                            <button type="button" class="btn btn-success" ng-click="addToCart(speical._id)"> Add To Cart
+                            </button>
+                            </span>
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
