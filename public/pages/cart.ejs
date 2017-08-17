@@ -1,8 +1,9 @@
 <div class="jumbotron text-center">
-    <h1>{{message}}</h1>
+     <h1> Cart</h1>
+    <h3>{{message}}</h3>
 
 
-    <div ng-controller="cartController">
+    <div ng-controller="cartController as list">
         <div class="row">
 
 
@@ -15,34 +16,33 @@
 
                         <!-- header -->
                         <tr class="style">
-                            <td><b>Name</b></td>
+                            <td class="tdLeft"><b>Item Name</b></td>
                             <td class="tdCenter"><b>Quantity</b></td>
                             <td class="tdRight"><b>Price</b></td>
                             <td />
+
+                            
                         </tr>
 
                         <!-- empty cart message -->
-                        <tr ng-hide="cat.GetTotalMenuCount() > 0" >
+                        <tr ng-hide="items.length > 0" >
                             <td class="tdCenter" colspan="4">
                                 Your cart is empty.
                             </td>
                         </tr>
 
-                        <tr class="style" ng-repeat='items in cat.getCartMenu'>
-                            <td><a ui-sref='menu({category:menu.category})'>{{menu.category}}</a></td>
-                            <td class="tdCenter">
-                                <div class="input-append">
-                                    <span style="width:100px" class="btn btn-success">{{cat.GetQuantityByName(menu.category)}}</span>
-
-                                    <button class="btn btn-primary" ng-click='cat.AddToCart(menu.category,+1)'>+</button>
-                                    <button class="btn btn-danger" ng-click='cat.AddToCart(menu.category,-1)'>-</button>
-
-                                </div>
-                            </td>
-                            <td class="tdRight">{{cat.GetQuantityByName(menu.category) * menu.price | currency }}</td>
+                        <tr class="style" ng-repeat='item in items'>
+                            <td><a ui-sref='menu({category:menu.category})'>{{item.menu.category}} {{item.name}}</a></td>
+                            
+                            <td class="tdRight">{{item.quantity}}</td>
+                <td class="tdRight">{{item.totalPrice}}</td>
+                           
                             <td class="tdRight">
-                                <button class="btn btn-danger" ng-click='cat.RemoveCartMenu(menu.category)'>remove </button>
-                            </td>
+                            <button class="btn btn-primary" ng-click='addToCartMenu(item.id,+1)'>+</button>
+                                    <button class="btn btn-danger" ng-click='addToCartMenu(item.id,-1)'>-</button>
+
+                                <button class="btn btn-danger" ng-click='cat.RemoveCartMenu(menu.category)'>Remove </button>
+                            </td>   
                         </tr>
 
                         <!-- footer -->
@@ -51,6 +51,7 @@
                             <td class="tdCenter"><b>{{cat.cat.GetTotalMenuCount()}}</b></td>
                             <td class="tdRight"><b>{{cat.GetTotalMenuPrice() | currency}}</b></td>
                             <td />
+                            
                         </tr>
                     </table>
                 </div>

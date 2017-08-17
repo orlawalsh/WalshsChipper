@@ -25,7 +25,7 @@ router.findAll = function(req, res) {
     });
 }
 
-router.findOne = function(req, res) {
+router.findOneSpecial = function(req, res) {
 
     // Use the Drink model to find a single drink
     Special.find({ "_id" : req.params.id },function(err, special) {

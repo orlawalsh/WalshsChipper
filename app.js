@@ -8,6 +8,7 @@ var cookieSession = require('cookie-session');
 
 
 var routes = require('./routes/index');
+var cart = require('./routes/cart');
 var users = require('./routes/users');
 var menu = require('./routes/menu.js');
 var special = require('./routes/special.js');

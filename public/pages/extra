@@ -1,0 +1,9 @@
+<td class="tdCenter">
+                                <div class="input-append">
+                                    <span style="width:100px" class="btn btn-success">{{cat.GetQuantityByName(menu.category)}}</span>
+
+                                    <button class="btn btn-primary" ng-click='addToCart(menu.category,+1)'>+</button>
+                                    <button class="btn btn-danger" ng-click='addToCart(menu.category,-1)'>-</button>
+
+                                </div>
+                            </td>

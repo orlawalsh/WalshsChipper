@@ -15,4 +15,21 @@ app.controller('menuController', ['$scope', '$http', function($scope, $http) {
             });
     }
 
-}]);
+    $scope.addToCart = function(id, quantity) {
+        //console.log("TESTER");
+        if (localStorage.getItem(id) === null) {
+            localStorage.setItem(id.toString() ,quantity.toString()) 
+            }
+            else {
+                oldQuantity = parseInt(localStorage.getItem(id));
+                newQuantity = oldQuantity + quantity;
+                localStorage.setItem(id, newQuantity.toString());
+            }
+        }
+        //localStorage.setItem(id.toString() ,quantity.toString());
+         window.alert("Item Added");
+    }
+
+
+
+]);
