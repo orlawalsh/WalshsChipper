@@ -1,8 +1,57 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/bg.jpg");
+
 }
 
 a {
   color: #00B7FF;
 }
+
+
+
+#cart {
+
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+      background-color: white;
+   
+
+}
+
+#cart tr{
+	color: black;
+
+}
+
+
+#menu{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 97%;
+    background-color: white;
+  
+
+
+}
+
+#special{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 97%;
+    background-color: white;
+     
+
+}
+ 
+ h1{
+  text-align: center;
+ background-color: white;
+ }
+
+ h4 {
+  text-align: center;
+  background-color: white;
+ }

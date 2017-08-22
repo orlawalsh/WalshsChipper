@@ -1,6 +1,6 @@
 var app = angular.module('WebApp');
 
-app.controller('menuController', ['$scope', '$http', function($scope, $http) {
+app.controller('menuController', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.message = 'Menu';
     findAll();
 
@@ -25,11 +25,12 @@ app.controller('menuController', ['$scope', '$http', function($scope, $http) {
                 newQuantity = oldQuantity + quantity;
                 localStorage.setItem(id, newQuantity.toString());
             }
-        }
+        
         //localStorage.setItem(id.toString() ,quantity.toString());
-         window.alert("Item Added");
+         //window.alert("Item added to cart");
+         $window.location.reload();
     }
 
 
 
-]);
+}]);

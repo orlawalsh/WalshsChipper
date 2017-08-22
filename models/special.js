@@ -8,10 +8,20 @@ var SpecialSchema = new mongoose.Schema({
     price : {
         type: Number
     },
+        dayid : {
+        type: Number
+    },
     items : {
         type: String
     },
 
+    menus :[{
+        mid: String,
+        qty: Number
+
+
+    }],
+    
     actprice : {
         type: Number
     },

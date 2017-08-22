@@ -36,36 +36,5 @@ router.findOneSpecial = function(req, res) {
     });
 }
 
-router.addSpecial = function(req, res) {
-
-    var special = new Special();
-
-    special.name = req.body.name;
-    special.price = req.body.price;
-    special.items = req.body.items;
-    special.actprice = req.body.actprice;
-    special.saving = req.body.saving;
-
-
-    console.log('Adding Special: ' + JSON.stringify(special));
-
-    special.save(function(err) {
-        if (err)
-            res.send(err);
-
-        res.json({ message: 'Special Added!', data: special });
-    });
-}
-
-router.deleteSpecial = function(req, res) {
-
-    Special.findByIdAndRemove(req.params.id, function(err) {
-        if (err)
-            res.send(err);
-        else
-            res.json({ message: 'Special Deleted!'});
-    });
-}
-
 
 module.exports = router;

@@ -8,8 +8,7 @@ var cookieSession = require('cookie-session');
 
 
 var routes = require('./routes/index');
-var cart = require('./routes/cart');
-var users = require('./routes/users');
+var cart = require('./routes/cart.js');
 var menu = require('./routes/menu.js');
 var special = require('./routes/special.js');
 
@@ -35,20 +34,12 @@ app.use(cookieSession({
 
 app.use(express.static(__dirname + '/public'));
 app.use('/', routes);
-app.use('/users', users);
 
 app.get('/menu', menu.findAll);
 app.get('/menu/:id', menu.findOne);
-app.post('/menu', menu.addMenu);
-app.delete('/menu:id', menu.deleteMenu);
 
 app.get('/special', special.findAll);
-app.get('/special/:id', special.findOne);
-app.post('/special', special.addSpecial);
-app.delete('/special/:id', special.deleteSpecial);
-
-// app.get('/admin/products', admin.findAll);
-
+app.get('/special/:id', special.findOneSpecial);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

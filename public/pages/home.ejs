@@ -1,20 +1,239 @@
+
+
+
+
 <h1>{{ message }}</h1>
 
+<div class ="container">
 <div class="row">
     <div class="col-md-4">
 
-        <table style="text-align: center">
-            <tr>
-                <td>
-                    <p>
-                        <i>Welcome to Walsh's Chipper</i></p>
-                    <p>A traditional family run chipper with the freshest chips in town!.</p>
-                    <p>Check out our <a href ="#menu">Menu</a> to view our traditional Chips, Fish, Sausages, Chicken and Burgers!</p>
-                    <p>Or why not check out our Daily <a href ="#special">Specials</a> and bag some savings.</p>
+     <div ng-controller="menuController as list">
+        <div class="row">
+          <h4><b>Menu</b></h4>
 
-                </td>
-            </tr>
-        </table>
+                    <table align="center" class="col-xs-9" valign="middle" id="menu">
+                        <th> Category&nbsp;  </th>
+                        <th> Name </th>
+                        <th> Price</th>
+                        <tbody ng-repeat="menu in menu">
 
+                        <tr>
+                            <td>
+
+                        <tr style="height:35px; font-size:13px; margin-left:20px" valign="middle";>
+                        <td>
+                            <span style="height:55px; font-size:13px;"  >{{menu.category}}</span>
+                        </td>
+                        <td>
+                            <span style="height:55px; font-size:13px; margin-left:20px;" >{{menu.name}}</span>
+                        </td>
+
+                        <td>
+                            <span></span>€{{menu.price}}
+                        </td>
+
+
+                        <td>
+
+
+                            <span style="height:55px; font-size:20px; margin-right:10px;" valign="middle";>
+                            <button type="button" class="btn btn-success" ng-click="addToCart(menu._id, 1)"> +
+                            </button>
+                            </span>
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+                </div>
+       
+
+
+<div class="col-md-4">
+<div ng-controller="specialController as list">
+        <div class="row">
+         <h4><b>Specials</b></h4>
+
+                    <table align="center" class="col-xs-9" valign="middle" id="special">
+
+                        <th> Day </th>
+                        <th> Items </th>
+                        <th> Price </th>
+                    
+
+                        <tbody ng-repeat="special in special">
+
+                        <tr>
+                            <td>
+
+                        <tr style="height:55px; font-size:13px;" valign="middle"; >
+                        <td>
+                            <span style="height:55px; font-size:13px;"  valign="middle";>{{special.name}} &nbsp;</span>
+
+                        <td>
+                            <span style="height:55px; font-size:13px;" valign="middle";>{{special.items}}</span>
+                        </td>
+
+                        <td>
+                            <spanstyle="height:55px; font-size:13px;"></span>
+                            €{{special.price}}
+                        </td>
+
+                       
+
+
+
+                        <td>
+
+                            <span style="height:20px; font-size:20px; margin-right:10px;" valign="middle";>
+                                <button type="button" class="btn btn-success {{special.disabled}}" ng-click="addToCartSpecial(special._id, 1)"> +
+                            </button>
+                            </span>
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+    </div>
+
+
+<div class="col-md-4">
+
+           <div id="outer" ng-controller="cartController as list">
+<!-- Modal -->
+<div id="specialSuggest" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+   <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Special notice</h4>
+      </div>
+      <div class="modal-body">
+        <p>You could get the {{name}} for less.<br></br>Would you like to upgrade to the special?</p>
+        <p>Price total: {{total}} </p>
+        <p>Price total after: {{price}} </p>
+        <p>Savings/Increase: {{total - price}} </p>
+        <p> {{extraItem}} </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="changeCart()">Accept</button>
+         <button type="button" class="btn btn-default" data-dismiss="modal"  ng-click="checkout()">No Just Pay</button>
+    
+      </div>
+    </div>
+    </div>
+    </div>
+
+        <div class="row">
+
+            <div class="row">
+                <div class="col-xs-9">
+ <h4><b>Cart</b></h4>
+
+                    <table align="center" class="col-xs-9" valign="middle" id="cart">
+
+                        <!-- header -->
+                        <tr class="style">
+                            <td class="tdLeft"><b>Item&nbsp;</b></td>
+                            <td class="tdCenter"><b>   Qty&nbsp;  </b></td>
+                            <td class="tdRight"><b>  Price   </b></td>
+                            <td />
+
+                            
+                        </tr>
+
+                        <!-- empty cart message -->
+                        <tr ng-hide="items.length > 0" >
+                            <td class="tdCenter" colspan="4">
+                                Your cart is empty.
+                            </td>
+                        </tr>
+
+                        <tr class="style" ng-repeat='item in items'>
+                            <td><a ui-sref='menu({category:menu.category})'>{{item.menu.category}} {{item.name}} </a></td>
+                            
+                            <td class="tdRight">{{item.quantity}}</td>
+                <td class="tdRight">€{{item.totalPrice}}</td>
+                           
+                            <td class="tdRight">
+
+                            <button class="btn btn-primary" ng-click='addToCartMenu(item.id,+1)'>+</button> 
+                                    
+
+                            </td>   
+                            <td class="tdRight">
+                            
+                            
+                                    <button class="btn btn-danger" ng-click='addToCartMenu(item.id,-1)'>-</button>
+
+                            </td> 
+
+                        </tr>
+
+                        <!-- footer -->
+                        <tr class="style">
+                            <td><b>Total</b></td>
+                            <td class="tdCenter"><b>{{qty}}</b></td>
+                            <td class="tdRight"><b>€{{total}}</b></td>
+                            <td />
+                            
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- buttons -->
+                <div class="col-sm-12">
+                    <p class="text-info">
+                    <script>
+
+                        // old-fashion jquery click method
+                        $('#paynow').click(function() {
+                            if (extScope.suggestion !== null && extScope.suggestion !== undefined) {
+                                console.log("suggestion");
+                                $('#specialSuggest').modal('show');
+                            } else {
+                                console.log("no suggestion");
+                                
+                                $('#noSuggestions').modal('show');
+                            }
+                            
+                        });
+                        
+                    </script>
+
+                 <button id="paynow" type="button" class="btn btn-info btn-lg">Pay Now</button>
+                 <button type="button" class="btn btn-info btn-lg" ng-click="clearOrder()">Clear</button>
+
+                 <div id="noSuggestions" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+   <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Special notice</h4>
+      </div>
+      <div class="modal-body">
+        <p>You are not eligble for an upgrade</p>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="checkout()">Just Pay Now</button>
+    
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+</div>
+

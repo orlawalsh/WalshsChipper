@@ -8,11 +8,6 @@ app.config(function($routeProvider) {
             controller  : 'mainController'
         })
 
-        .when('/edit', {
-            templateUrl : 'pages/item.ejs',
-            controller  : 'itemController'
-        })
-
         .when('/menu', {
             templateUrl : 'pages/menu.ejs',
             controller  : 'menuController'
