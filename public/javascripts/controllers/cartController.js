@@ -241,7 +241,7 @@ app.controller('cartController', ['$scope', '$http', '$window', function($scope,
                  $scope.suggestion = sItem.id;
                  $scope.name = sItem.name;
                  $scope.price = sItem.price;
-                 $scope.extraItem = "<b>This will change your order</b>";
+                 $scope.extraItem = "This will change your order";
                  $scope.specialItem = sItem.menuitems;
             } else {
                 $scope.suggest2(dailySpecial, function (sItem){
@@ -249,7 +249,7 @@ app.controller('cartController', ['$scope', '$http', '$window', function($scope,
                       $scope.suggestion = sItem.id;
                       $scope.name = sItem.name;
                       $scope.price = sItem.price;
-                      $scope.extraItem = "<b>This will change your order</b>";
+                      $scope.extraItem = "This will change your order";
                        $scope.specialItem = sItem.menuitems;
                     }
                 });
@@ -261,7 +261,7 @@ app.controller('cartController', ['$scope', '$http', '$window', function($scope,
                       $scope.suggestion = sItem.id;
                       $scope.name = sItem.name;
                       $scope.price = sItem.price;
-                      $scope.extraItem = "<b>This will change your order</b>";
+                      $scope.extraItem = "This will change your order";
                        $scope.specialItem = sItem.menuitems;
             }
 
